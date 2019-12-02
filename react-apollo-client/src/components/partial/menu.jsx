@@ -14,18 +14,6 @@ const Menu = () =>  (
         Source Code
       </a>
     </li>
-    {/* <li className="menu">
-      <i className="k-icon k-i-menu"
-        // onKeyPress={event => {
-        //   if (event.key === "Enter") {
-        //     context.toggleSidenav(!context.navOpen);
-        //   }
-        // }}
-        // onClick={() => {
-        //   context.toggleSidenav(!context.navOpen);
-        // }}
-      ></i>
-    </li> */}
   </ul>
 )
 
