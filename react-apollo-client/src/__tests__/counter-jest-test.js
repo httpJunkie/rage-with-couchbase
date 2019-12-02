@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Counter from '../components/partial/counter'
 
-test('increments when clicked', () => {
+test('increments when clicked', () => { 
   /* ARRANGE */
 
   const div = document.createElement('div')
@@ -21,10 +21,14 @@ test('increments when clicked', () => {
   /* ACT */
 
   button.click()
+  button.dispatchEvent(new MouseEvent('click', {bubbles: true}))
+  button.dispatchEvent(new MouseEvent('click', {bubbles: true}))
   button.click()
 
   /* ASSERT */
 
-  expect(button.textContent).toBe('2')
+  expect(button.textContent).toBe('4')
   console.log(`final state of HTML: \n${document.body.innerHTML}`)
+
+  /* TEAR DOWN */
 })
