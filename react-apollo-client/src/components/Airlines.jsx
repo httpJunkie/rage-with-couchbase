@@ -10,9 +10,10 @@ import withApolloProvider from './withApolloProvider'
 import AirlineList from './AirlineList'
 import AirlineDetails from './AirlineDetails'
 
-const Airlines = ({ baseUrl, match }) => {
+const Airlines = ({ match }) => {
   const airlineId = Number(match.params.id)
   const { loading, error, data } = useQuery(airlineGql)
+
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :( <span style={{color: 'red'}}>{error.message}</span> )</p>
 
