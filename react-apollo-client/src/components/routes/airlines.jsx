@@ -3,12 +3,12 @@ import { Link } from "react-router-dom"
 import { Column, Row } from "simple-flexbox"
 import { useQuery } from '@apollo/react-hooks'
 
-import { airlineGql } from './airline'
+import { airlineGql } from './airline-gql'
 
-import withApolloProvider from './withApolloProvider'
+import withApolloProvider from '../hoc/withApolloProvider'
 
-import AirlineList from './AirlineList'
-import AirlineDetails from './AirlineDetails'
+import AirlineList from '../partial/airline-list'
+import AirlineDetails from '../partial/airline-details'
 
 const Airlines = ({ match }) => {
   const airlineId = Number(match.params.id)
