@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom"
 
-function AirlineList({airlines}) {
+const AirlineList = ({airlines}) => {
   const listItems = 
     airlines.map(({ name, id }) => (
       <li key={`${name}-${id}`}>

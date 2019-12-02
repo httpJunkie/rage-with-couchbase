@@ -10,7 +10,7 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path={["/airlines/:id", "/airlines/", "/"]}
-            render={(props) => <Airlines {...props} baseUrl={`/airlines`} />}
+            render={(props) => <Airlines {...props} />}
           />
           <Route component={Error404} />
         </Switch>

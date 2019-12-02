@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from 'prop-types'
 
-function AirlineDetails({airline}) {
+const AirlineDetails = ({airline}) => {
   return (airline
     ? (<>
         <div className="airline-details">{airline.name}</div>

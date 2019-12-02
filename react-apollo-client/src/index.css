@@ -40,11 +40,11 @@ a.menu:active {
   background-size: 100% 2px;
 }
 
-ul.illustration-list {
+ul.airline-list {
   padding: 0;
   margin: 0;
 }
-ul.illustration-list > li {
+ul.airline-list > li {
   list-style: none;
   line-height: 2.5em;
   font-size: 1em;
