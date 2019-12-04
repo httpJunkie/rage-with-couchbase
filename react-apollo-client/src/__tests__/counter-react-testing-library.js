@@ -20,7 +20,7 @@ test('increments when clicked', () => {
   fireEvent.click(button)
   fireEvent.click(button)
 
-  /* ASSERT */
+  /* ASSERT */  
 
   expect(button.textContent).toBe('4')
   debug()
