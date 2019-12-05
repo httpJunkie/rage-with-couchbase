@@ -24,14 +24,19 @@ class Pagination extends Component {
 
   constructor(props) {
     super(props);
-    const { totalRecords = null, pageLimit = 30, pageNeighbours = 0 } = props;
+    const { totalRecords = null, pageLimit = 30, pageSiblings = 0 } = props;
+
+    // totalRecords
+    // pageLimit
+    // pageSiblings
+    // 
 
     this.pageLimit = typeof pageLimit === 'number' ? pageLimit : 30;
     this.totalRecords = typeof totalRecords === 'number' ? totalRecords : 0;
 
-    // pageNeighbours can be: 0, 1 or 2
-    this.pageNeighbours = typeof pageNeighbours === 'number'
-      ? Math.max(0, Math.min(pageNeighbours, 2))
+    // pageSiblings can be: 0, 1 or 2
+    this.pageSiblings = typeof pageSiblings === 'number'
+      ? Math.max(0, Math.min(pageSiblings, 2))
       : 0;
 
     this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
@@ -65,16 +70,16 @@ class Pagination extends Component {
 
   handleMoveLeft = evt => {
     evt.preventDefault();
-    this.gotoPage(this.state.currentPage - (this.pageNeighbours * 2) - 1);
+    this.gotoPage(this.state.currentPage - (this.pageSiblings * 2) - 1);
   }
 
   handleMoveRight = evt => {
     evt.preventDefault();
-    this.gotoPage(this.state.currentPage + (this.pageNeighbours * 2) + 1);
+    this.gotoPage(this.state.currentPage + (this.pageSiblings * 2) + 1);
   }
 
   /**
-   * Let's say we have 10 pages and we set pageNeighbours to 2
+   * Let's say we have 10 pages and we set pageSiblings to 2
    * Given that the current page is 6
    * The pagination control will look like the following:
    *
@@ -82,25 +87,25 @@ class Pagination extends Component {
    *
    * (x) => terminal pages: first and last page(always visible)
    * [x] => represents current page
-   * {...x} => represents page neighbours
+   * {...x} => represents page siblings
    */
   fetchPageNumbers = () => {
 
     const totalPages = this.totalPages;
     const currentPage = this.state.currentPage;
-    const pageNeighbours = this.pageNeighbours;
+    const pageSiblings = this.pageSiblings;
 
     /**
      * totalNumbers: the total page numbers to show on the control
      * totalBlocks: totalNumbers + 2 to cover for the left(<) and right(>) controls
      */
-    const totalNumbers = (this.pageNeighbours * 2) + 3;
+    const totalNumbers = (this.pageSiblings * 2) + 3;
     const totalBlocks = totalNumbers + 2;
 
     if (totalPages > totalBlocks) {
 
-      const startPage = Math.max(2, currentPage - pageNeighbours);
-      const endPage = Math.min(totalPages - 1, currentPage + pageNeighbours);
+      const startPage = Math.max(2, currentPage - pageSiblings);
+      const endPage = Math.min(totalPages - 1, currentPage + pageSiblings);
 
       let pages = range(startPage, endPage);
 
@@ -194,7 +199,7 @@ class Pagination extends Component {
 Pagination.propTypes = {
   totalRecords: PropTypes.number.isRequired,
   pageLimit: PropTypes.number,
-  pageNeighbours: PropTypes.number,
+  pageSiblings: PropTypes.number,
   onPageChanged: PropTypes.func
 };
 

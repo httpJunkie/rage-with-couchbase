@@ -27,7 +27,7 @@ const AirlineList = ({airlines}) => {
         {listItems}
       </ul>
 
-      <Pagination totalRecords={airlineList.length} pageLimit={10} pageNeighbors={1} onPageChanged={onPageChanged} />
+      <Pagination totalRecords={airlineList.length} pageLimit={10} pageSiblings={1} onPageChanged={onPageChanged} />
     </>
   )
 }
