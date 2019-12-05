@@ -9,8 +9,8 @@ const AirlineList = ({airlines}) => {
 
   const onPageChanged = ({ currentPage, totalPages, pageLimit }) => {
     const offset = (currentPage - 1) * pageLimit
-    const newShowingAirlines = airlineList.slice(offset, offset + pageLimit)
-    setAirlinesShowing(newShowingAirlines)
+    const currentSlice = airlineList.slice(offset, offset + pageLimit)
+    setAirlinesShowing(currentSlice)
   }
 
   const listItems = 
