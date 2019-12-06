@@ -11,14 +11,14 @@ const RIGHT_PAGE = 'RIGHT';
  */
 const range = (from, to, step = 1) => {
   let i = from;
-  const range = [];
+  const rangeArray = [];
 
   while (i <= to) {
-    range.push(i);
+    rangeArray.push(i);
     i += step;
   }
 
-  return range;
+  return rangeArray;
 }
 
 class Pagination extends Component {
@@ -158,13 +158,13 @@ class Pagination extends Component {
     return (
       <>
         <nav aria-label="Airline Pagination" className={`pagination-container`}>
-          <div class="pagination">
+          <div className="pagination">
             <ul>
               { pages.map((page, index) => {
 
                 if (page === LEFT_PAGE) return (
                   <li key={index} className="page-item">
-                    <a className="page-link" href="#" aria-label="Previous" onClick={this.handleMoveLeft}>
+                    <a className="page-link" href="/#" aria-label="Previous" onClick={this.handleMoveLeft}>
                       <span aria-hidden="true">&laquo;</span>
                       <span className="sr-only">Previous</span>
                     </a>
@@ -173,7 +173,7 @@ class Pagination extends Component {
 
                 if (page === RIGHT_PAGE) return (
                   <li key={index} className="page-item">
-                    <a className="page-link" href="#" aria-label="Next" onClick={this.handleMoveRight}>
+                    <a className="page-link" href="/#" aria-label="Next" onClick={this.handleMoveRight}>
                       <span aria-hidden="true">&raquo;</span>
                       <span className="sr-only">Next</span>
                     </a>
@@ -182,7 +182,7 @@ class Pagination extends Component {
 
                 return (
                   <li key={index} className={`page-item${ currentPage === page ? ' active' : ''}`}>
-                    <a className="page-link" href="#" onClick={ this.handleClick(page) }>{ page }</a>
+                    <a className="page-link" href="/#" onClick={ this.handleClick(page) }>{ page }</a>
                   </li>
                 );
 

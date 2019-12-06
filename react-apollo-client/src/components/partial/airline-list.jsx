@@ -3,13 +3,11 @@ import { Link } from "react-router-dom"
 import Pagination from '../utility/pagination'
 
 const AirlineList = ({airlines}) => {
-
-  const [airlineList, setAirlineList] = React.useState(airlines)
-  const [airlinesShowing, setAirlinesShowing] = React.useState(airlineList.slice(0, 10))
+  const [airlinesShowing, setAirlinesShowing] = React.useState(airlines.slice(0, 10))
 
   const onPageChanged = ({ currentPage, totalPages, pageLimit }) => {
     const offset = (currentPage - 1) * pageLimit
-    const currentSlice = airlineList.slice(offset, offset + pageLimit)
+    const currentSlice = airlines.slice(offset, offset + pageLimit)
     setAirlinesShowing(currentSlice)
   }
 
@@ -27,7 +25,7 @@ const AirlineList = ({airlines}) => {
         {listItems}
       </ul>
 
-      <Pagination totalRecords={airlineList.length} pageLimit={10} pageSiblings={1} onPageChanged={onPageChanged} />
+      <Pagination totalRecords={airlines.length} pageLimit={10} pageSiblings={1} onPageChanged={onPageChanged} />
     </>
   )
 }
