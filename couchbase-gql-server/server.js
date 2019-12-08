@@ -1,3 +1,6 @@
+require('dotenv').config()
+const { CBSU, CBSP } = process.env
+
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
 const { buildSchema } = require('graphql')
@@ -8,7 +11,7 @@ const cors = require('cors');
 
 const app = express()
 const cluster  = new couchbase.Cluster("couchbase://localhost")
-      cluster.authenticate("ebishard", "123456")
+      cluster.authenticate(CBSU, CBSP)
 
 const bucket = cluster.openBucket("travel-sample")
       bucket.operationTimeout = 120 * 1000
