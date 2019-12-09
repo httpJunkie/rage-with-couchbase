@@ -1,16 +1,38 @@
 # React, Apollo, GraphQL, and Express Project
 
-In this repo we have two sepereate npm projects:
+In this repo we have two sepereate projects:
 
-- An Express/GraphQL Server with Couchbase Server for it's data storage
-- A React app using Apollo Client to connect to a GraphQL Server (localhost)
+## couchbase-gql-server
 
-Requires basic setup of Couchbase Server and a sample database:
+- An Express/GraphQL Server with Couchbase Server for data storage
 
+## react-apollo-cleint
+
+- A React app using Apollo Client to connect to a GraphQL server
+
+## Setup Couchbase Server and Data Bucket Locally
+
+We want to setup Couchbase Server locally, install the `travel-sample` bucket and setup in the security section of Couchbase Server a user and pass for connecting to our `travel-sample` database. Full instructions on all of that can be found here:
 [Creating a Couchbase GraphQL Server and More!](https://www.reactstateofmind.com/couchbase-graphql)
 
-Once this repo is cloned, cd into each project and run `npm start` or `yarn start` doesn't matter twinkle toes be as unique as you want to be, I don't judge. 
+## RUnning the Applications
 
-Ensure Couchbase Server is setup locally and the credentials in the `server.js` file are up to date with user and pass from Couchbase Server (Security).
+Once Couchbase Server is setup and working with the `travel-sample` bucket, we can run each project with follow these steps:
+
+1. Inside the `couchbase-gql-server` directory, create a file named: `.env` and inside of it, store your username and password:
+
+## `.env`
+```
+CBSU=myusername
+CBSP=mypassword
+```
+
+2. In the terminal, change directory (cd) into `couchbase-gql-server` and run `npm start`
+
+At this point you will be able to test your GraphQL server at: [localhost:4000/graphql](http://localhost:4000/graphql)
+
+3. finally, cd into `react-apollo-client` and run `npm start`
+
+At this point you will be able to test your React application at: [localhost:3000/](http://localhost:3000/)
 
 ![Project Preview](https://imgur.com/rXxRC4d.gif)
