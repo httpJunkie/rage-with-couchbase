@@ -19,7 +19,8 @@ const bucket = cluster.openBucket("travel-sample")
 const schema = buildSchema(`
   type Query {
     airlinesUK: [Airline],
-    airlineByKey(id: Int!): Airline
+    airlineByKey(id: Int!): Airline,
+    airportsUK: [Airport]
   }
   type Airline {
     id: Int,
@@ -28,6 +29,13 @@ const schema = buildSchema(`
     iata: String,
     icao: String,
     name: String
+  }
+  type Airport {
+    id: Int,
+    name: String,
+    country: String,
+    icao: String,
+    tz: String
   }
 `)
 
@@ -53,7 +61,21 @@ const root = {
         dbkey, (error, result) => error ? reject(error) : resolve(result.value)
       )
     )
-  }
+  },
+  airportsUK: () => {
+    let statement = 
+      "SELECT airport.id, airport.airportname as name, airport.country, airport.icao, airport.tz " +
+      "FROM `travel-sample` AS airport " +
+      "WHERE airport.type = 'airport' " +
+      "AND airport.country = 'United Kingdom' " +
+      "ORDER BY airport.airportname ASC"
+    let query = couchbase.N1qlQuery.fromString(statement);
+    return new Promise((resolve, reject) => 
+      bucket.query(
+        query, (error, result) => error ? reject(error) : resolve(result)
+      )
+    )
+  },
 }
 
 const serverPort = 4000
@@ -105,6 +127,20 @@ app.listen(serverPort, () => {
 
   {
     "id": 112
+  }
+
+*/
+
+/*
+
+  query getAirportsUK{
+    airportsUK {
+      id
+      airportname
+      country
+      icao
+      tz
+    }
   }
 
 */
