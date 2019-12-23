@@ -59,7 +59,7 @@ $secondary-color: #1d1f20;
 }
 
 .pagination-container ul li {
-  counter-increment: pagination;
+  // counter-increment: pagination;
   &:hover {
     a {
       color: lighten($main-color, 5%);
@@ -74,25 +74,25 @@ $secondary-color: #1d1f20;
       border: solid 1px $secondary-color;
     }
   }
-  &:first-child {
-    float: left;
-    a {
-      &:after {
-        content: "Previous";
-      }
-    }
-  }
-  &:nth-child(2) {
-    counter-reset: pagination;
-  }
-  &:last-child {
-    float: right;
-    a {
-      &:after {
-        content: "Next";
-      }
-    }
-  }
+  // &:first-child {
+  //   float: left;
+  //   a {
+  //     &:after {
+  //       content: "Previous";
+  //     }
+  //   }
+  // }
+  // &:nth-child(2) {
+  //   counter-reset: pagination;
+  // }
+  // &:last-child {
+  //   float: right;
+  //   a {
+  //     &:after {
+  //       content: "Next";
+  //     }
+  //   }
+  // }
   a {
     border: solid 1px darken($main-color, 10%);
     border-radius: 0.2rem;
@@ -103,9 +103,9 @@ $secondary-color: #1d1f20;
     text-align: center;
     padding: 0.5rem 0.9rem;
   }
-  a:after {
-    content: " " counter(pagination) " ";
-  }
+  // a:after {
+  //   content: " " counter(pagination) " ";
+  // }
 }
 
 .pagination-container.large {
