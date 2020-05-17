@@ -41,12 +41,13 @@ const schema = buildSchema(`
 
 const root = {
   airlinesUK: () => {
-    let statement = 
-      "SELECT META(airline).id, airline.* " +
-      "FROM `travel-sample` AS airline " +
-      "WHERE airline.type = 'airline' " +
-      "AND airline.country = 'United Kingdom'" +
-      "ORDER BY airline.name ASC"
+    let statement = `
+      SELECT META(airline).id, airline.* 
+      FROM \`travel-sample\` AS airline 
+      WHERE airline.type = 'airline' 
+      AND airline.country = 'United Kingdom' 
+      ORDER BY airline.name ASC;
+    `
     let query = couchbase.N1qlQuery.fromString(statement);
     return new Promise((resolve, reject) => 
       bucket.query(
