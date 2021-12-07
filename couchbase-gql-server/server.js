@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { USER2, PASS, BUCKET, ENDPOINT, SSL } = process.env
+const { CB_USER, CB_PASS, CB_BUCKET, CB_URL, CB_SSL } = process.env
 
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
@@ -13,15 +13,15 @@ const app = express()
 
 const run = async () => {
   const connectionString = 
-    `http${SSL === 'true' ? 's' : ''}://${ENDPOINT}${SSL === 'true' ? '?ssl=no_verify' : ''}`
+    `http${CB_SSL === 'true' ? 's' : ''}://${CB_URL}${CB_SSL === 'true' ? '?ssl=no_verify' : ''}`
     // console.log(`connectionString`)
     // console.log(connectionString)
   try {
     const cluster = await couchbase.connect(
       connectionString,
-      { username: USER2, password: PASS }
+      { username: CB_USER, password: CB_PASS }
     )
-    const bucket = cluster.bucket(BUCKET)
+    const bucket = cluster.bucket(CB_BUCKET)
     const collection = bucket.defaultCollection()
 
     const schema = buildSchema(`
@@ -140,7 +140,7 @@ run()
   query getAirportsUK{
     airportsUK {
       id
-      airportname
+      name
       country
       icao
       tz
