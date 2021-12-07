@@ -57,13 +57,12 @@ const run = async () => {
         ORDER BY airline.name ASC;
       `
       let queryResult = await cluster.query(statement)
-      console.log(`airplinesUK: queryResult.rows`)
-      console.log(queryResult.rows)
       return queryResult.rows
       },
-      airlineByKey: (data) => {
+      airlineByKey: async(data) => {
         let key = "airline_" + data.id
-        return collection.get(key, { timeout: 1000 })
+        let queryResult = await collection.get(key)
+        return queryResult.value
       },
       airportsUK: async() => {
         let statement =
@@ -73,8 +72,6 @@ const run = async () => {
           "AND airport.country = 'United Kingdom' " +
           "ORDER BY airport.airportname ASC"
           let queryResult = await cluster.query(statement)
-          console.log(`airportsUK: queryResult.rows`)
-          console.log(queryResult.rows)
           return queryResult.rows
       },
     }
