@@ -1,5 +1,7 @@
 require('dotenv').config()
-const { CB_USER, CB_PASS, CB_BUCKET, CB_URL, CB_SSL } = process.env
+const { 
+  CB_USER, CB_PASS, CB_BUCKET, CB_URL, CB_SSL 
+} = process.env
 
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
