@@ -12,10 +12,13 @@ const cors = require('cors')
 const app = express()
 
 const run = async () => {
-  const connectionString = 
-    `http${CB_SSL === 'true' ? 's' : ''}://${CB_URL}${CB_SSL === 'true' ? '?ssl=no_verify' : ''}`
-    // console.log(`connectionString`)
-    // console.log(connectionString)
+  const scheme = `couchbase${CB_SSL === 'true' ? 's' : ''}://`
+  const url = CB_URL
+  const queryString = (CB_SSL === 'true') 
+    ? '?ssl=no_verify' 
+    : ''
+  const connectionString = scheme + url + queryString
+
   try {
     const cluster = await couchbase.connect(
       connectionString,
