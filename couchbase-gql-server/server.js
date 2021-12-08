@@ -67,7 +67,7 @@ const run = async () => {
       airlineByKey: async(data) => {
         let key = "airline_" + data.id
         let queryResult = await collection.get(key)
-        return queryResult.value
+        return queryResult.content
       },
       airportsUK: async() => {
         let statement =
